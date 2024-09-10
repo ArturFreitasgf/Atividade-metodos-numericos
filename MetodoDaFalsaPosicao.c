@@ -15,7 +15,7 @@ double metodo_da_falsa_posicao(double (*f)(double), double a, double b, double t
 
     double ponto = a;
     while (fabs(f(ponto)) > tol) {
-        ponto = b - (f(b) * (b - a)) / (f(b) - f(a));
+        ponto = ((a * f(b)) - (b * f(a))) / (f(b) - f(a));
         if (f(ponto) == 0) {
             return ponto;
         } else if (f(a) * f(ponto) < 0) {
@@ -24,7 +24,6 @@ double metodo_da_falsa_posicao(double (*f)(double), double a, double b, double t
             a = ponto;
         }
     }
-
     return ponto;
 }
 
@@ -36,6 +35,5 @@ int main() {
     if (raiz != -1) {
         printf("A raiz encontrada é: %lf\n", raiz);
     }
-
     return 0;
 }
